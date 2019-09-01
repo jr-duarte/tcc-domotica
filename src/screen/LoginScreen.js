@@ -17,29 +17,29 @@ export default class Login extends Component {
   state = {
     email: '',
     password: '',
-    isAuthenticated: false
+    isAuthenticated: false,
+    dateUserBD: '',
   }
 
-
-  //async ola() {
-
-  // const response = await axios.put(`https://apptcc-c7e29.firebaseio.com/user/ola.json?auth=cWsetWuViUzDMOctCzXwGgBpPBZTBo7uG9XajK2q`, {
-  //  name: 'juniordedddcaxcxzc',
-  //idade: 31321321
-  // })
-
-  // console.log(response)
-  // console.log(response.data)
-  //}
+  async getDateUser(localId) {
+    let response = await axios.get(`https://apptcc-c7e29.firebaseio.com/users/${localId}.json?auth=sFQlfC4m3JNUMEnBmO8TqT9IEqHl7EM9LD0wdRDf`, {
+    })
+      .catch(err => console.log(err))
+      .then(res => {
+        this.state.dateUserBD = res.data
+        console.log(this.state.dateUserBD)
+      })
+  }
 
   async login() {
-    const response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD7nmJdPtM_lpwDiUZ68F0__yEUMth8WrE`, {
+    let response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD7nmJdPtM_lpwDiUZ68F0__yEUMth8WrE`, {
       email: this.state.email,
       password: this.state.password,
       returnSecureToken: true
-    })
+    }).catch(err => console.log(err))
       .then(res => {
         if (res.data.localId) {
+          this.getDateUser(res.data.localId)
           this.state.isAuthenticated = true
           console.log(res.data)
           this.props.navigation.replace('SelectHome')
@@ -48,7 +48,6 @@ export default class Login extends Component {
       }, () => {
         this.state.isAuthenticated = false
       })
-      .catch(err => console.log(err))
     if (!this.state.isAuthenticated) {
       ToastAndroid.show('Email ou Senha inválidos!', ToastAndroid.SHORT)
     }
