@@ -21,16 +21,16 @@ export default class Login extends Component {
   }
 
 
-  async ola() {
+  //async ola() {
 
-    const response = await axios.put(`https://apptcc-c7e29.firebaseio.com/user/ola.json?auth=cWsetWuViUzDMOctCzXwGgBpPBZTBo7uG9XajK2q`, {
-      name: 'juniordedddcaxcxzc',
-      idade: 31321321
-    })
+  // const response = await axios.put(`https://apptcc-c7e29.firebaseio.com/user/ola.json?auth=cWsetWuViUzDMOctCzXwGgBpPBZTBo7uG9XajK2q`, {
+  //  name: 'juniordedddcaxcxzc',
+  //idade: 31321321
+  // })
 
-    console.log(response)
-    console.log(response.data)
-  }
+  // console.log(response)
+  // console.log(response.data)
+  //}
 
   async login() {
     const response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD7nmJdPtM_lpwDiUZ68F0__yEUMth8WrE`, {
