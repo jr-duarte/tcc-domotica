@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import {
   StyleSheet,
   View,
@@ -8,9 +9,50 @@ import {
   TouchableOpacity,
   Image,
   Switch,
+  ToastAndroid,
 } from 'react-native';
 
 export default class Login extends Component {
+
+  state = {
+    email: '',
+    password: '',
+    isAuthenticated: false
+  }
+
+
+  async ola() {
+
+    const response = await axios.put(`https://apptcc-c7e29.firebaseio.com/user/ola.json?auth=cWsetWuViUzDMOctCzXwGgBpPBZTBo7uG9XajK2q`, {
+      name: 'juniordedddcaxcxzc',
+      idade: 31321321
+    })
+
+    console.log(response)
+    console.log(response.data)
+  }
+
+  async login() {
+    const response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD7nmJdPtM_lpwDiUZ68F0__yEUMth8WrE`, {
+      email: this.state.email,
+      password: this.state.password,
+      returnSecureToken: true
+    })
+      .then(res => {
+        if (res.data.localId) {
+          this.state.isAuthenticated = true
+          console.log(res.data)
+          this.props.navigation.replace('SelectHome')
+          ToastAndroid.show('Sucesso', ToastAndroid.SHORT)
+        }
+      }, () => {
+        this.state.isAuthenticated = false
+      })
+      .catch(err => console.log(err))
+    if (!this.state.isAuthenticated) {
+      ToastAndroid.show('Email ou Senha inválidos!', ToastAndroid.SHORT)
+    }
+  }
 
   static navigationOptions = {
     headerStyle: {
@@ -38,10 +80,18 @@ export default class Login extends Component {
           source={require('../assets/logo2.png')} />
 
         <TextInput style={styles.input}
-          placeholder="Digite seu e-mail" />
+          placeholder="Digite seu e-mail"
+          autoFocus={true} keyboardType='email-address'
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
+        />
 
         <TextInput style={styles.input}
-          placeholder="Digite sua senha" />
+          placeholder="Digite sua senha"
+          autoFocus={true} secureTextEntry={true}
+          value={this.state.password}
+          onChangeText={password => this.setState({ password })}
+        />
 
         <View style={{ flexDirection: 'row', padding: 20 }}>
           <Text style={{ fontWeight: 'bold', color: "#999FF7", marginRight: 5 }}>Lembrar Senha</Text>
@@ -51,7 +101,7 @@ export default class Login extends Component {
         </View>
 
         <TouchableOpacity style={styles.button}
-          onPress={() => this.props.navigation.replace('SelectHome')}
+          onPress={this.login.bind(this)}
         >
           <Text style={style = styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
@@ -102,5 +152,8 @@ const styles = StyleSheet.create({
   },
 
 })
+
+
+
 
 
