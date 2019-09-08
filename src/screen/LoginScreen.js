@@ -26,8 +26,9 @@ export default class Login extends Component {
     })
       .catch(err => console.log(err))
       .then(res => {
-        this.state.dateUserBD = res.data
-        console.log(this.state.dateUserBD)
+        //this.setState({dateUserBD: JSON.stringify(res.data)})
+       // console.log(this.state.dateUserBD)
+        this.props.navigation.replace('SelectHome', res.data)
       })
   }
 
@@ -36,17 +37,17 @@ export default class Login extends Component {
       email: this.state.email,
       password: this.state.password,
       returnSecureToken: true
-    }).catch(err => console.log(err))
+    })
+      //.catch(err => console.log(err))
       .then(res => {
         if (res.data.localId) {
+          this.setState({isAuthenticated: true})
+          //console.log(res.data)
           this.getDateUser(res.data.localId)
-          this.state.isAuthenticated = true
-          console.log(res.data)
-          this.props.navigation.replace('SelectHome')
           ToastAndroid.show('Sucesso', ToastAndroid.SHORT)
         }
       }, () => {
-        this.state.isAuthenticated = false
+        this.setState({ isAuthenticated: false })
       })
     if (!this.state.isAuthenticated) {
       ToastAndroid.show('Email ou Senha inválidos!', ToastAndroid.SHORT)
