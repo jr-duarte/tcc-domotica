@@ -96,6 +96,66 @@ export default class SelectHome extends Component {
                     <View style={{ backgroundColor: '#5863F8', borderRadius: 15, borderBottomLeftRadius: 15, padding: 15, marginBottom: 15 }}>
                         <Text style={style = styles.textItens}>Escolha uma residência</Text>
                         {this.RenderElementsFlatList()}
+
+
+
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => this.props.navigation.push('SensorsActuator')}
+                        >
+                            <Text style={style = styles.buttonText}>Av. Marquês de São Vicente, 3001, São Paulo</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>R. Nebraska, 443, São Paulo</Text>
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>Av. Santa Maria, 45, Guarujá</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>R. Santa Clara, Rio de Janeiro</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => this.props.navigation.push('SensorsActuator')}
+                        >
+                            <Text style={style = styles.buttonText}>Av. Marquês de São Vicente, 3001, São Paulo</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>R. Nebraska, 443, São Paulo</Text>
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>Av. Santa Maria, 45, Guarujá</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>R. Santa Clara, Rio de Janeiro</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => this.props.navigation.push('SensorsActuator')}
+                        >
+                            <Text style={style = styles.buttonText}>Av. Marquês de São Vicente, 3001, São Paulo</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>R. Nebraska, 443, São Paulo</Text>
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>Av. Santa Maria, 45, Guarujá</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={() => this.tostMessage()}>
+                            <Text style={style = styles.buttonText}>R. Santa Clara, Rio de Janeiro</Text>
+                        </TouchableOpacity>
+
                     </View>
 
 
